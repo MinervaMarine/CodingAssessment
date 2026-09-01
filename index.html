@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screening Assessment</title>
+<!-- Local stylesheet only. No CDN, no web fonts, no network requests of any kind. -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="app-header">
+  <p class="brand">
+    <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+    <span class="brand-text">Screening Assessment</span>
+  </p>
+
+  <!-- The ticking clock is hidden from assistive tech on purpose: a live region that
+       updates every 250ms would be unusable. Announcements go through #timer-announcer. -->
+  <div id="timer" class="timer timer--normal" aria-hidden="true" hidden>
+    <span id="timer-icon" class="timer-icon">&#9201;</span>
+    <span class="timer-body">
+      <span id="timer-display" class="timer-display">30:00</span>
+      <span id="timer-state" class="timer-state">Time left</span>
+    </span>
+  </div>
+</header>
+
+<!-- Polite announcements at 10, 5 and 1 minute, and at zero. Nothing else. -->
+<p id="timer-announcer" class="sr-only" role="status" aria-live="polite"></p>
+
+<main class="wrap">
+
+  <!-- ==================== 1. START ==================== -->
+  <section id="screen-start" class="screen" aria-labelledby="start-heading" hidden>
+    <h1 id="start-heading" class="screen-heading" tabindex="-1">Junior .NET developer screening</h1>
+
+    <div id="resume-panel" class="panel panel--notice" hidden>
+      <h2 class="panel-heading">Unfinished assessment found on this device</h2>
+      <p id="resume-detail" class="panel-text"></p>
+      <div class="button-row">
+        <button id="btn-resume" class="btn btn--primary" type="button">Resume</button>
+        <button id="btn-start-over" class="btn btn--ghost" type="button">Start over as someone else</button>
+      </div>
+      <p class="panel-note">Starting over permanently discards the saved answers.</p>
+    </div>
+
+    <div id="last-submitted-panel" class="panel panel--notice" hidden>
+      <h2 class="panel-heading">A completed submission is still saved here</h2>
+      <p id="last-submitted-detail" class="panel-text"></p>
+      <div class="button-row">
+        <button id="btn-view-last" class="btn btn--secondary" type="button">Open the results file again</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-heading">Before you start</h2>
+      <ul class="rules">
+        <li><strong><span id="intro-question-count">5</span> questions.</strong> The first
+          <span id="intro-mcq-count">3</span> are multiple choice; the rest ask for a short written
+          explanation and/or a little C#.</li>
+        <li><strong><span id="intro-time-limit">30 minutes</span> in total</strong> for the whole
+          assessment. The timer starts the moment you press Start, stays visible on every screen, and
+          <strong>never pauses</strong> &mdash; not between questions, not if you close the tab.</li>
+        <li>You can move <strong>Back and Next</strong> freely, and <strong>skip</strong> anything you
+          are unsure about.</li>
+        <li>There is <strong>no feedback and no score</strong> shown, during or after.</li>
+        <li>When you submit, a <strong>results file downloads to your device</strong>. Email that file
+          to <strong><span id="intro-recruiter">the recruiter</span></strong>. This page uploads
+          nothing anywhere.</li>
+        <li>When time runs out the assessment submits itself from wherever you are.</li>
+      </ul>
+    </div>
+
+    <form id="start-form" class="panel" novalidate>
+      <h2 class="panel-heading">Your details</h2>
+
+      <div class="field">
+        <label class="field-label" for="input-name">Full name</label>
+        <input id="input-name" class="input" type="text" name="name" autocomplete="name"
+               aria-describedby="name-hint name-error" required>
+        <p id="name-hint" class="field-hint">As you would like it to appear on your results file.</p>
+        <p id="name-error" class="field-error" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="input-email">Email address</label>
+        <input id="input-email" class="input" type="email" name="email" autocomplete="email"
+               spellcheck="false" aria-describedby="email-hint email-error" required>
+        <p id="email-hint" class="field-hint">Used only to identify your results file.</p>
+        <p id="email-error" class="field-error" role="alert"></p>
+      </div>
+
+      <div class="button-row">
+        <button id="btn-start" class="btn btn--primary" type="submit" disabled>Start the assessment</button>
+      </div>
+      <p class="panel-note">Start is enabled once both fields are filled in correctly.</p>
+    </form>
+  </section>
+
+  <!-- ==================== 2. QUESTION ==================== -->
+  <section id="screen-question" class="screen" aria-labelledby="question-heading" hidden>
+    <div class="progress">
+      <div class="progress-bar" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
+      <p id="answer-state" class="answer-state">
+        <span id="answer-state-icon" class="answer-state-icon" aria-hidden="true">&#9675;</span>
+        <span id="answer-state-text">Not answered</span>
+      </p>
+    </div>
+
+    <h2 id="question-heading" class="screen-heading" tabindex="-1"></h2>
+
+    <div id="question-body" class="panel"></div>
+
+    <div class="button-row button-row--split">
+      <button id="btn-back" class="btn btn--ghost" type="button">Back</button>
+      <button id="btn-next" class="btn btn--primary" type="button">Next</button>
+    </div>
+    <p class="panel-note">Skipping is allowed &mdash; Next always works.</p>
+  </section>
+
+  <!-- ==================== 3. REVIEW ==================== -->
+  <section id="screen-review" class="screen" aria-labelledby="review-heading" hidden>
+    <h2 id="review-heading" class="screen-heading" tabindex="-1">Review before you submit</h2>
+    <p class="lede">This page shows only whether each question has an answer. It does not repeat your
+      answers, and it never shows whether they are right.</p>
+
+    <ul id="review-list" class="review-list"></ul>
+
+    <div class="panel">
+      <p id="review-summary" class="panel-text"></p>
+      <div class="button-row">
+        <button id="btn-open-confirm" class="btn btn--primary" type="button">Submit assessment</button>
+      </div>
+
+      <div id="confirm-panel" class="panel panel--danger" hidden>
+        <h3 class="panel-heading">Submit for good?</h3>
+        <p id="confirm-detail" class="panel-text"></p>
+        <p class="panel-text"><strong>After submitting you cannot come back or change anything.</strong></p>
+        <div class="button-row">
+          <button id="btn-confirm-submit" class="btn btn--danger" type="button">Yes, submit now</button>
+          <button id="btn-cancel-submit" class="btn btn--ghost" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4. RECEIPT ==================== -->
+  <section id="screen-receipt" class="screen" aria-labelledby="receipt-heading" hidden>
+    <h2 id="receipt-heading" class="screen-heading" tabindex="-1">Assessment submitted</h2>
+    <p id="receipt-lede" class="lede"></p>
+
+    <div class="panel">
+      <h3 class="panel-heading">Your results file</h3>
+      <p class="panel-text">A file named <code id="receipt-filename" class="filename"></code> was
+        downloaded to this device. Email it to
+        <strong><span id="receipt-recruiter"></span></strong> as an attachment.</p>
+      <p id="receipt-download-note" class="panel-text"></p>
+    </div>
+
+    <div class="panel">
+      <h3 class="panel-heading">What was recorded</h3>
+      <ul id="receipt-list" class="review-list"></ul>
+    </div>
+
+    <div class="panel">
+      <h3 class="panel-heading">If the download did not appear</h3>
+      <p class="panel-text">Use <em>Download again</em>, or copy the text below into a file named
+        <code id="receipt-filename-2" class="filename"></code> and attach that instead.</p>
+      <div class="button-row">
+        <button id="btn-download-again" class="btn btn--secondary" type="button">Download again</button>
+        <button id="btn-copy-json" class="btn btn--secondary" type="button">Copy JSON</button>
+        <span id="copy-status" class="copy-status" role="status" aria-live="polite"></span>
+      </div>
+      <label class="field-label" for="json-box">Results file contents (read only)</label>
+      <textarea id="json-box" class="json-box" rows="14" readonly spellcheck="false"
+                autocapitalize="off" autocorrect="off" wrap="off"></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p>This page runs entirely on your own device and makes no network requests.</p>
+</footer>
+
+<!-- Classic script tag on purpose: ES modules are blocked by CORS over file://. -->
+<script src="app.js"></script>
+</body>
+</html>

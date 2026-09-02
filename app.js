@@ -402,14 +402,17 @@
       type: 'free-text',
       section: 'AI',
       topic: 'ai-how-it-works',
-      topicLabel: 'How one of these techniques actually works',
+      topicLabel: 'How regression, classification or clustering actually works',
       prompt: 'Pick any one of regression, classification or clustering, then answer (a) and (b) in the box.',
       code: null,
       parts: [
         'Name the technique you have chosen.',
         'In two or three sentences, how is that kind of problem actually solved? Say what the algorithm is given to work with, and what it produces at the end.'
       ],
-      hints: [ 'Two or three sentences is genuinely enough, and no maths is expected.' ],
+      hints: [
+        'Two or three sentences is genuinely enough, and no maths is expected.',
+        'Ground it in an example if that helps - one of your own, or one of the problems from an earlier question. You can use Back to re-read an earlier question; your answers are kept.'
+      ],
       options: [],
       answerKey: null,
       grid: null,

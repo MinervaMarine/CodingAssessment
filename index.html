@@ -56,9 +56,11 @@
     <div class="panel">
       <h2 class="panel-heading">Before you start</h2>
       <ul class="rules">
-        <li><strong><span id="intro-question-count">5</span> questions.</strong> The first
-          <span id="intro-mcq-count">3</span> are multiple choice; the rest ask for a short written
-          explanation and/or a little C#.</li>
+        <li><strong><span id="intro-question-count">10</span> questions</strong> across
+          <span id="intro-sections">several sections</span>.
+          <span id="intro-mcq-count">5</span> are multiple choice or tick-box;
+          <span id="intro-freetext-count">5</span> ask for a short written answer or a few lines
+          of code. You can move back and forth and you can skip anything.</li>
         <li><strong><span id="intro-time-limit">30 minutes</span> in total</strong> for the whole
           assessment. The timer starts the moment you press Start, stays visible on every screen, and
           <strong>never pauses</strong> &mdash; not between questions, not if you close the tab.</li>
@@ -108,6 +110,7 @@
       </p>
     </div>
 
+    <p id="question-section" class="q-section" hidden></p>
     <h2 id="question-heading" class="screen-heading" tabindex="-1"></h2>
 
     <div id="question-body" class="panel"></div>
@@ -125,7 +128,7 @@
     <p class="lede">This page shows only whether each question has an answer. It does not repeat your
       answers, and it never shows whether they are right.</p>
 
-    <ul id="review-list" class="review-list"></ul>
+    <div id="review-list" class="review-list"></div>
 
     <div class="panel">
       <p id="review-summary" class="panel-text"></p>
@@ -160,7 +163,7 @@
 
     <div class="panel">
       <h3 class="panel-heading">What was recorded</h3>
-      <ul id="receipt-list" class="review-list"></ul>
+      <div id="receipt-list" class="review-list"></div>
     </div>
 
     <div class="panel">

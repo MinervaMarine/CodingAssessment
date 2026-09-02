@@ -417,7 +417,8 @@ code, pre, textarea { font-family: var(--font-mono); }
 .q-option:hover { border-color: var(--border-strong); }
 .q-option:focus-within { border-color: var(--accent); }
 
-.q-option input[type="radio"] {
+.q-option input[type="radio"],
+.q-option input[type="checkbox"] {
   flex: none;
   width: 1.15rem;
   height: 1.15rem;
@@ -431,6 +432,46 @@ code, pre, textarea { font-family: var(--font-mono); }
   font-family: var(--font-mono);
   font-size: 0.95rem;
   overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+   Grid questions - one fieldset per row, auto-fit columns inside it
+   -------------------------------------------------------------------------- */
+
+.q-grid {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.q-grid-row {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 0.9rem 0.9rem;
+  background: var(--surface-alt);
+}
+
+.q-grid-row:last-child {
+  margin-bottom: 0;
+}
+
+.q-grid-rowlabel {
+  padding: 0 0.35rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.q-grid-cells {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.4rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.q-grid-cells .q-option {
+  margin: 0;
 }
 
 .q-answer {
@@ -545,4 +586,33 @@ code, pre, textarea { font-family: var(--font-mono); }
      column layout with flex-grow would stretch them to full screen height. */
   .button-row--split .btn { flex: 1 1 45%; }
   .review-row { align-items: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
+   Section labels
+   -------------------------------------------------------------------------- */
+
+.q-section {
+  margin: 0 0 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.review-group + .review-group {
+  margin-top: 1.25rem;
+}
+
+.review-group-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.review-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

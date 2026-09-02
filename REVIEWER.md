@@ -166,8 +166,12 @@ should not be cached; casting `GETDATE()` to `date`.
 
 ### sql3 — grouping, aggregates and subqueries (6)
 
-An average of an aggregate. The prompt already defines a Captain as `Seafarers.RankCode = 'CAP'` and
-a voyage as any `SeamanTransactions` row, so neither is left to the candidate to guess.
+An average of an aggregate. The question defines a Captain as `Seafarers.RankCode = 'CAP'` and a
+voyage as any `SeamanTransactions` row, so neither is left to the candidate to guess — but note that
+both definitions sit in the question's **hints** list rather than in the numbered part, so a candidate
+who skims past the hints may not have read them. If an answer picks the other reading (filtering
+`SeamanTransactions.RankCode`, or counting only completed voyages) and says so, treat it as a stated
+assumption rather than an error and score the shape on its own merits.
 
 | Part | Points | What earns them |
 |------|--------|-----------------|
@@ -176,8 +180,9 @@ a voyage as any `SeamanTransactions` row, so neither is left to the candidate to
 | Zero-voyage judgment | 0–1 | 1: notices that a captain with no rows in `SeamanTransactions` drops out of an inner join, and asks whether those zeros belong in the average — ideally observing that including them lowers the average and so lets more captains through. A `LEFT JOIN` with `COUNT(t.SeamanCode)`, or a line of prose ("I assumed captains with no voyages are excluded"), both earn it. 0: not raised — and do not deduct anywhere else for it. |
 
 The zero-voyage point is the strongest signal this question produces. It is the one place a candidate
-can show they thought about what the data means rather than what the syntax is, and the prompt
-explicitly invites it ("if any part strikes you as ambiguous, say how you chose to read it"). Quote
+can show they thought about what the data means rather than what the syntax is, and the question
+invites it ("if any part strikes you as ambiguous, say how you chose to read it") — though that
+invitation is one of the hints, so a candidate who did not read the hints was never actually asked. Quote
 their wording into `review.notes` verbatim and follow it up at interview, whether or not the SQL was
 right.
 
@@ -186,7 +191,7 @@ one they used; noticing `SignOffDate` is nullable and asking whether an in-progr
 "completed" (the prompt says any row, so this is a bonus, not a requirement); using a CTE for
 readability; noting that `AVG` over an `int` count truncates in T-SQL.
 
-### ai3 — how one of these techniques actually works (4)
+### ai3 — how regression, classification or clustering actually works (4)
 
 The candidate picks the technique in part (a) and explains it in part (b), so grade (b) against the
 technique **they** named, not the one you would have picked. All three choices are gradeable.

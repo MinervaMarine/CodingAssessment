@@ -63,10 +63,11 @@ Run these with `index.html` opened directly from disk — not through a server.
   Download again. (During development this was exercised by stubbing `localStorage` to throw, not by
   a genuinely blocked browser.)
 
-## One thing to change before use
+## One thing to confirm before use
 
-`RECRUITER_EMAIL` in `app.js` is still the placeholder `recruiting@example.com`. It is the only place
-the address appears, and it is what the candidate is told to email their results file to.
+`RECRUITER_EMAIL` in `app.js` is set to `itadmin@minervamarine.com`. It is the only place the address
+appears, and it is what the candidate is told to email their results file to — so confirm that is the
+inbox you actually want the submissions arriving in.
 
 ## What *was* verified automatically
 

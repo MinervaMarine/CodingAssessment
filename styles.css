@@ -398,9 +398,12 @@ code, pre, textarea { font-family: var(--font-mono); }
 
 .q-hint {
   margin: 0 0 1rem;
+  padding-left: 1.4rem;
   color: var(--text-muted);
   font-size: 0.87rem;
 }
+
+.q-hint li { margin-bottom: 0.4rem; }
 
 .q-options { display: flex; flex-direction: column; gap: 0.5rem; }
 

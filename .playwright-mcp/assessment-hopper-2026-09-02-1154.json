@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 2,
+  "assessment": {
+    "id": "junior-dev-screen",
+    "version": "2.0.0",
+    "questionCount": 10,
+    "sections": [
+      "C# and algorithms",
+      "SQL",
+      "AI"
+    ]
+  },
+  "candidate": {
+    "name": "Grace Hopper",
+    "email": "g@example.com"
+  },
+  "startedAt": "2026-09-02T11:09:22+03:00",
+  "submittedAt": "2026-09-02T11:54:22+03:00",
+  "durationSeconds": 2700,
+  "timeLimitSeconds": 2700,
+  "timedOut": true,
+  "autoScore": {
+    "correct": 0,
+    "outOf": 5
+  },
+  "answers": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "section": "C# and algorithms",
+      "topic": "strings",
+      "given": null,
+      "expected": "b",
+      "correct": false
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "section": "C# and algorithms",
+      "topic": "recursion",
+      "given": null,
+      "expected": "c",
+      "correct": false
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "section": "C# and algorithms",
+      "topic": "big-o",
+      "given": null,
+      "expected": "d",
+      "correct": false
+    },
+    {
+      "id": "q4",
+      "type": "free-text",
+      "section": "C# and algorithms",
+      "topic": "csharp-linq",
+      "given": null,
+      "correct": null,
+      "review": {
+        "score": null,
+        "notes": "",
+        "outOf": 6
+      }
+    },
+    {
+      "id": "sql1",
+      "type": "free-text",
+      "section": "SQL",
+      "topic": "sql-keys",
+      "given": null,
+      "correct": null,
+      "review": {
+        "score": null,
+        "notes": "",
+        "outOf": 4
+      }
+    },
+    {
+      "id": "sql2",
+      "type": "free-text",
+      "section": "SQL",
+      "topic": "sql-joins",
+      "given": null,
+      "correct": null,
+      "review": {
+        "score": null,
+        "notes": "",
+        "outOf": 4
+      }
+    },
+    {
+      "id": "sql3",
+      "type": "free-text",
+      "section": "SQL",
+      "topic": "sql-aggregates",
+      "given": null,
+      "correct": null,
+      "review": {
+        "score": null,
+        "notes": "",
+        "outOf": 6
+      }
+    },
+    {
+      "id": "ai1",
+      "type": "grid",
+      "section": "AI",
+      "topic": "ai-technique-properties",
+      "given": {
+        "regression": [
+          "sup"
+        ],
+        "clustering": [
+          "sim",
+          "unsup"
+        ]
+      },
+      "expected": {
+        "regression": [
+          "sup",
+          "num"
+        ],
+        "classification": [
+          "sup",
+          "label"
+        ],
+        "clustering": [
+          "unsup",
+          "sim"
+        ]
+      },
+      "correct": false,
+      "rowsCorrect": 1,
+      "rowsOutOf": 3
+    },
+    {
+      "id": "ai2",
+      "type": "grid",
+      "section": "AI",
+      "topic": "ai-technique-selection",
+      "given": {
+        "pump": [
+          "C"
+        ]
+      },
+      "expected": {
+        "fuel": [
+          "R"
+        ],
+        "pump": [
+          "C"
+        ],
+        "profile": [
+          "Cl"
+        ]
+      },
+      "correct": false,
+      "rowsCorrect": 1,
+      "rowsOutOf": 3
+    },
+    {
+      "id": "ai3",
+      "type": "free-text",
+      "section": "AI",
+      "topic": "ai-how-it-works",
+      "given": null,
+      "correct": null,
+      "review": {
+        "score": null,
+        "notes": "",
+        "outOf": 4
+      }
+    }
+  ]
+}

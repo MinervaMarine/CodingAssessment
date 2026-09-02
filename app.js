@@ -97,7 +97,7 @@
    *                       <pre>. Written flush-left with explicit \n because
    *                       the indentation is part of the content.
    *   parts      array    optional list of sub-questions (a, b, c ...).
-   *   hint       string   optional practical note (never a hint at the answer).
+   *   hints      array    optional list of notes (never a hint at the answer).
    *   options    array    multiple-choice only: [{key, text}]. `key` is what
    *                       gets stored and exported; keep it short and stable.
    *   answerKey  string   multiple-choice only: the `key` of the one correct
@@ -157,11 +157,11 @@
       topicLabel: 'Strings and arrays',
       prompt: 'What does this program print to the console?',
       code:
-'string greeting = "Hello";\n' +
-'greeting.Replace(\'l\', \'L\');\n' +
-'Console.WriteLine(greeting);',
+        'string greeting = "Hello";\n' +
+        'greeting.Replace(\'l\', \'L\');\n' +
+        'Console.WriteLine(greeting);',
       parts: null,
-      hint: null,
+      hints: null,
       options: [
         { key: 'a', text: 'HeLLo' },
         { key: 'b', text: 'Hello' },
@@ -187,7 +187,7 @@
 '    return Calculate(n - 1) + Calculate(n - 2);\n' +
 '}',
       parts: null,
-      hint: 'Working it out on paper is quicker than it looks.',
+      hints: [ 'Working it out on paper is quicker than it looks.' ],
       options: [
         { key: 'a', text: '5' },
         { key: 'b', text: '6' },
@@ -220,7 +220,7 @@
 '    return false;\n' +
 '}',
       parts: null,
-      hint: null,
+      hints: null,
       options: [
         { key: 'a', text: 'O(1)' },
         { key: 'b', text: 'O(n)' },
@@ -262,7 +262,7 @@
         'What do line 1 and line 2 print? The author expected only "Ada" and 1 - explain what really happens and why.',
         'Change GetActiveNames (or the calling code) so the result matches what the author expected, and say what the trade-off of your change is.'
       ],
-      hint: 'Around 10-20 lines of explanation and/or C# is plenty. There is no compiler here, so readable C# matters more than exact syntax. Tab moves to the next control - use spaces to indent.',
+      hints: ['Around 10-20 lines of explanation and/or C# is plenty. There is no compiler here, so readable C# matters more than exact syntax. Tab moves to the next control - use spaces to indent.'],
       options: [],
       answerKey: null,
       grid: null,
@@ -281,7 +281,7 @@
         'We want to guarantee that SeamanTransactions can never contain two rows for the same voyage. Which column or columns would you choose as the primary key, and why?',
         'What would have to be true about the data for your choice to stop working?'
       ],
-      hint: 'No SQL needed for this one - a sentence or two per part is plenty.',
+      hints: ['No SQL needed for this one - a sentence or two per part is plenty.'],
       options: [],
       answerKey: null,
       grid: null,
@@ -297,10 +297,12 @@
       prompt: 'Write one query against the tables below. Any SQL dialect is fine - say which one you are writing if it matters.',
       code: SQL_SCHEMA,
       parts: [
-        'Return SeamanCode, Name, RankDescription and Age for every seafarer whose RankCode is \'CAP\'.',
-        'Age must be the seafarer\'s actual age in whole years as of today - not their date of birth, and not a figure that is wrong for part of the year.'
+        'Return SeamanCode, Name, RankDescription and Age for every seafarer whose RankCode is \'CAP\'. '
       ],
-      hint: 'There is no database here, so readable SQL matters more than exact syntax.',
+      hints: [
+        'Age must be the seafarer\'s actual age in whole years as of today - ( not their date of birth ), and not a figure that is wrong for part of the year.',
+        'There is no database here, so readable SQL matters more than exact syntax.'
+      ],
       options: [],
       answerKey: null,
       grid: null,
@@ -317,10 +319,12 @@
       code: SQL_SCHEMA,
       parts: [
         'Return the Captains who have completed more voyages than the average number of voyages completed by all Captains.',
-        'Treat a Captain as a seafarer whose current rank (Seafarers.RankCode) is \'CAP\', and count a voyage as any row in SeamanTransactions for that seafarer.',
-        'If any part of this strikes you as ambiguous, say how you chose to read it and carry on.'
       ],
-      hint: 'There is no database here, so readable SQL matters more than exact syntax.',
+      hints: [
+        'Treat a Captain as a seafarer whose current rank (Seafarers.RankCode) is \'CAP\', and count a voyage as any row in SeamanTransactions for that seafarer.',
+        'If any part of this strikes you as ambiguous, say how you chose to read it and carry on.',
+        'There is no database here, so readable SQL matters more than exact syntax.'
+      ],
       options: [],
       answerKey: null,
       grid: null,
@@ -336,7 +340,7 @@
       prompt: 'For each technique, tick every box that applies. A technique may have more than one box ticked.',
       code: null,
       parts: null,
-      hint: null,
+      hints: null,
       options: [],
       answerKey: null,
       grid: {
@@ -366,7 +370,7 @@
       prompt: 'Choose the one technique that fits each problem.',
       code: null,
       parts: null,
-      hint: null,
+      hints: null,
       options: [],
       answerKey: null,
       grid: {
@@ -405,7 +409,7 @@
         'Name the technique you have chosen.',
         'In two or three sentences, how is that kind of problem actually solved? Say what the algorithm is given to work with, and what it produces at the end.'
       ],
-      hint: 'Two or three sentences is genuinely enough, and no maths is expected.',
+      hints: [ 'Two or three sentences is genuinely enough, and no maths is expected.' ],
       options: [],
       answerKey: null,
       grid: null,
@@ -1264,7 +1268,7 @@
     dom.answerState.className = 'answer-state' + (answered ? ' answer-state--answered' : '');
   }
 
-  /** Shared description block: code listing, sub-question list, practical hint. */
+  /** Shared description block: code listing, sub-question list, practical hints. */
   function appendDescription(container, question, idPrefix) {
     var describedBy = [];
 
@@ -1280,7 +1284,7 @@
     if (question.parts && question.parts.length) {
       var list = makeEl('ol', 'q-parts');
       list.id = idPrefix + '-parts';
-      list.type = 'a';
+      list.type = 'A';
       for (var i = 0; i < question.parts.length; i++) {
         list.appendChild(makeEl('li', null, question.parts[i]));
       }
@@ -1288,11 +1292,14 @@
       describedBy.push(list.id);
     }
 
-    if (question.hint) {
-      var hint = makeEl('p', 'q-hint', question.hint);
-      hint.id = idPrefix + '-hint';
-      container.appendChild(hint);
-      describedBy.push(hint.id);
+    if (question.hints && question.hints.length) {
+      var hintList = makeEl('ul', 'q-hint');
+      hintList.id = idPrefix + '-hint';
+      for (var i = 0; i < question.hints.length; i++) {
+        hintList.appendChild(makeEl('li', null, question.hints[i]));
+      }
+      container.appendChild(hintList);
+      describedBy.push(hintList.id);
     }
 
     return describedBy;

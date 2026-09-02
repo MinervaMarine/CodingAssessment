@@ -423,7 +423,7 @@
   /* --- test-extract:config:start --- */
 
   // Placeholder - see assumption 1 at the top of this file.
-  var RECRUITER_EMAIL = 'recruiting@example.com';
+  var RECRUITER_EMAIL = 'itadmin@minervamarine.com';
 
   var ASSESSMENT = { id: 'junior-dev-screen', version: '2.0.0' };
 

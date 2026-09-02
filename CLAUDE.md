@@ -227,4 +227,4 @@ ASP.NET Core minimal API) is an outline in [REVIEWER.md](REVIEWER.md) — outlin
 
 ## Before handing to candidates
 
-`RECRUITER_EMAIL` in [app.js](app.js) is still the placeholder `recruiting@example.com`.
+`RECRUITER_EMAIL` in [app.js](app.js) is still the placeholder `itadmin@minervamarine.com`.

@@ -1989,7 +1989,7 @@ Expected: all checks pass against the final `app.js`.
 
 - [ ] **Step 12: Set the recruiter address, or flag it**
 
-`RECRUITER_EMAIL` is still `recruiting@example.com`. Either set the real address or tell the user it is still a placeholder. Do not invent an address.
+`RECRUITER_EMAIL` is still `itadmin@minervamarine.com`. Either set the real address or tell the user it is still a placeholder. Do not invent an address.
 
 - [ ] **Step 13: Commit**
 

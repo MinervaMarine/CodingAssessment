@@ -19,7 +19,7 @@ Files: `index.html`, `styles.css`, `app.js` — open `index.html` directly, no s
 3. Review screen (answered / not answered only), confirm, submit.
 4. A file `assessment_<lastname>_<YYYY-MM-DD-HHmm>.json` downloads to their machine and they email it
    to the address in `RECRUITER_EMAIL` (top of `app.js`, currently the placeholder
-   `recruiting@example.com` — **change it before use**).
+   `itadmin@minervamarine.com` — **change it before use**).
 
 If time runs out the app submits from wherever they are and sets `"timedOut": true`.
 
@@ -153,8 +153,13 @@ date through it.
 The `365.25` form is much closer but is not exact either, so do not present it to a candidate as the
 right answer. It reads a day early whenever the leap days actually crossed number fewer than
 years / 4: someone born 1980-03-01, evaluated on 2026-03-01, has 16801 days elapsed, and
-16801 / 365.25 = 45.997, so `FLOOR` returns **45** on the morning of their 46th birthday. Out by a
-day, not by a year — which is why it still earns the 2.
+16801 / 365.25 = 45.9986, so `FLOOR` returns **45** on the morning of their 46th birthday. Out by a
+day, not by a year — which is why it still earns the 2. This is not a rare edge case: evaluated on
+the birthday itself, elapsed days equal age × 365 plus the leap days crossed, so the formula needs
+leap_days_crossed >= age / 4 — close to a coin flip — and sampling 305 birthdays found it wrong on
+135 of them, roughly half. On other days of the year the spare days give it slack, so it is usually
+correct there; do not treat a candidate's use of it as a freak edge case, and give real credit to
+one who notices the imprecision themselves.
 
 Bonus notes (no points): saying which dialect they wrote; noting the age changes between runs so it
 should not be cached; casting `GETDATE()` to `date`.

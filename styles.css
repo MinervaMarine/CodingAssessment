@@ -369,7 +369,7 @@ code, pre, textarea { font-family: var(--font-mono); }
 
 /* ---------------------------------------------------------- questions ---- */
 
-.q-fieldset { margin: 0; padding: 0; border: 0; }
+.q-fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 
 .q-prompt {
   display: block;
@@ -442,6 +442,7 @@ code, pre, textarea { font-family: var(--font-mono); }
   border: 0;
   margin: 0;
   padding: 0;
+  min-width: 0;
 }
 
 .q-grid-row {

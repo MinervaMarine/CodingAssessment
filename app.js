@@ -275,11 +275,10 @@
       section: 'SQL',
       topic: 'sql-keys',
       topicLabel: 'Choosing a primary key',
-      prompt: 'Read the three tables below, then answer (a) and (b) in the box.',
+      prompt: 'Read the three tables below, then answer in the box.',
       code: SQL_SCHEMA,
       parts: [
-        'We want to guarantee that SeamanTransactions can never contain two rows for the same voyage. Which column or columns would you choose as the primary key, and why?',
-        'What would have to be true about the data for your choice to stop working?'
+        'We want to guarantee that SeamanTransactions can never contain two rows for the same voyage. Which column or columns would you choose as the primary key, and why?'
       ],
       hints: ['No SQL needed for this one - a sentence or two per part is plenty.'],
       options: [],
@@ -403,15 +402,13 @@
       section: 'AI',
       topic: 'ai-how-it-works',
       topicLabel: 'How regression, classification or clustering actually works',
-      prompt: 'Pick any one of regression, classification or clustering, then answer (a) and (b) in the box.',
+      prompt: 'Choose any one of the three techniques (regression, classification, clustering)',
       code: null,
       parts: [
-        'Name the technique you have chosen.',
-        'In two or three sentences, how is that kind of problem actually solved? Say what the algorithm is given to work with, and what it produces at the end.'
+        'Explain how this model arrives at its results and what it does with the historical data in order to "learn"'
       ],
       hints: [
-        'Two or three sentences is genuinely enough, and no maths is expected.',
-        'Ground it in an example if that helps - one of your own, or one of the problems from an earlier question. You can use Back to re-read an earlier question; your answers are kept.'
+        'Two or three sentences is genuinely enough.'
       ],
       options: [],
       answerKey: null,
